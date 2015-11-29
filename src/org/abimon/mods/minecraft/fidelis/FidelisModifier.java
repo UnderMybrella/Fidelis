@@ -12,7 +12,6 @@ public class FidelisModifier extends ModBoolean {
 
 	public FidelisModifier(ItemStack[] items) {
 		super(items, 1, "Fidelis", EnumChatFormatting.DARK_GRAY.toString(), "Soulbound");
-		System.out.println(Arrays.toString(items));
 	}
 	
 	public void modify(ItemStack[] input, ItemStack tool){

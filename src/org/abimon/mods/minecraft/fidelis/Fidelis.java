@@ -86,7 +86,7 @@ public class Fidelis {
 
 		BAUBLES_LOADED = Loader.isModLoaded("Baubles");
 
-		System.out.println("Is Baubles Loaded? " + BAUBLES_LOADED);
+		//System.out.println("Is Baubles Loaded? " + BAUBLES_LOADED);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
@@ -279,7 +279,6 @@ public class Fidelis {
 
 	public static void setFidelisNBT(EntityPlayer player, String tag, NBTTagCompound nbt) {
 		NBTTagCompound playerNBT = player.getEntityData();
-		System.out.println("Here we go...");
 		if(playerNBT != null)
 		{	
 			NBTTagCompound persistedNBT = playerNBT.getCompoundTag(player.PERSISTED_NBT_TAG);
@@ -375,7 +374,6 @@ public class Fidelis {
 			setFidelisNBT(player, ARMOR, setItems(armorInv));
 			if(BAUBLES_LOADED)
 				BaubleLoyalty.onDeath(player);
-			System.out.println(getFidelisNBT(player));
 		}
 	}
 

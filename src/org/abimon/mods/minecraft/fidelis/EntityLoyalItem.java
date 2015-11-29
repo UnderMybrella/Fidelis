@@ -15,15 +15,12 @@ public class EntityLoyalItem extends EntityItem {
 		this.motionZ = item.motionZ;
 		this.age = item.age;
 		this.delayBeforeCanPickup = item.delayBeforeCanPickup;
-		System.out.println("Overriding " + item);
 	}
 
     public void setDead()
     {
 		super.setDead();
     	ItemStack item = getEntityItem();
-    	System.out.println("This thing");
-    	System.out.println(this.age);
     	if(item == null ||  item.stackSize <= 0 || !Fidelis.isSoulbound(item));
     	else
     	{
