@@ -1,0 +1,16 @@
+[
+{
+  "modid": "Fidelis",
+  "name": "Fidelis",
+  "description": "Soulbind items to you.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["UnderMybrella"],
+  "credits": "The Forge and FML guys, for, you know, Forge",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
