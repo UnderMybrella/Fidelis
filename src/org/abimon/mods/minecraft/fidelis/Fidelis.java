@@ -379,20 +379,21 @@ public class Fidelis {
 
 	@SubscribeEvent
 	public void onAttack(AttackEntityEvent event){
-		if(event.entityPlayer.getHeldItem().hasTagCompound())
-			if(event.entityPlayer.getHeldItem().getTagCompound().hasKey("Fidelis"))
-			{
-				String fidelisID = event.entityPlayer.getHeldItem().getTagCompound().getString("Fidelis");
-				if(event.entityPlayer.getGameProfile().getId().toString().equals(fidelisID))
-					return;
-				else if(fidelisID.equals(""))
+		if(event.entityPlayer != null && event.entityPlayer.getHeldItem() != null)
+			if(event.entityPlayer.getHeldItem().hasTagCompound())
+				if(event.entityPlayer.getHeldItem().getTagCompound().hasKey("Fidelis"))
 				{
-					event.entityPlayer.getHeldItem().getTagCompound().setString("Fidelis", event.entityPlayer.getGameProfile().getId().toString());
-					event.entityPlayer.getHeldItem().getTagCompound().setString("FidelisDisplay", event.entityPlayer.getDisplayName());
+					String fidelisID = event.entityPlayer.getHeldItem().getTagCompound().getString("Fidelis");
+					if(event.entityPlayer.getGameProfile().getId().toString().equals(fidelisID))
+						return;
+					else if(fidelisID.equals(""))
+					{
+						event.entityPlayer.getHeldItem().getTagCompound().setString("Fidelis", event.entityPlayer.getGameProfile().getId().toString());
+						event.entityPlayer.getHeldItem().getTagCompound().setString("FidelisDisplay", event.entityPlayer.getDisplayName());
+					}
+					else
+						event.setCanceled(true);
 				}
-				else
-					event.setCanceled(true);
-			}
 	}
 
 	public static String getOwner(ItemStack item){
