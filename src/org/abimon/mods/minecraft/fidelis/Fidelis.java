@@ -432,6 +432,7 @@ public class Fidelis {
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.SERVER)
 	public void tick(LivingEvent.LivingUpdateEvent event)
 	{
 		if(event.entity instanceof EntityPlayer){
@@ -477,7 +478,7 @@ public class Fidelis {
 		ItemStack item = event.entityItem.getEntityItem();
 		if(item == null)
 			return;
-		if(isSoulbound(item)){
+		if(isSoulbound(item) && MinecraftServer.getServer() != null){
 			for(Object ply : MinecraftServer.getServer().getConfigurationManager().playerEntityList)
 			{
 				EntityPlayer player = (EntityPlayer) ply;
@@ -520,6 +521,8 @@ public class Fidelis {
 	public static String getID(EntityPlayer player){
 		if(player == null)
 			return "";
+		if(MinecraftServer.getServer() == null)
+			return player.getGameProfile().getId().toString();
 		if(MinecraftServer.getServer().isServerInOnlineMode())
 			return player.getGameProfile().getId().toString();
 		else
@@ -527,6 +530,8 @@ public class Fidelis {
 	}
 
 	public static String getFidelisID(ItemStack item){
+		if(MinecraftServer.getServer() == null)
+			return item.getTagCompound().getString("Fidelis");
 		if(MinecraftServer.getServer().isServerInOnlineMode())
 			return item.getTagCompound().getString("Fidelis");
 		else
@@ -534,7 +539,7 @@ public class Fidelis {
 	}
 
 	public static ItemStack setFidelisID(ItemStack item, EntityPlayer player){
-		if(MinecraftServer.getServer().isServerInOnlineMode())
+		if(MinecraftServer.getServer() == null || MinecraftServer.getServer().isServerInOnlineMode())
 			item.getTagCompound().setString("Fidelis", player.getGameProfile().getId().toString());
 		item.getTagCompound().setString("FidelisDisplay", player.getDisplayName());
 		return item;
